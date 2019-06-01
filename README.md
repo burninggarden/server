@@ -1,3 +1,3 @@
-# Your project name here
+# Server
 
-Your project description here
+Base server implementation for use in other libraries
