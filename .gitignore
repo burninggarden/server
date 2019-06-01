@@ -1,9 +1,4 @@
 dist/*
 node_modules/*
 temp/*
-bin/compile-source-files
-bin/install
-bin/lint
-bin/remap-paths
-bin/test
-.eslintrc.json
+npm-debug.log
