@@ -8,6 +8,7 @@
 	"repository": "https://github.com/burninggarden/server",
 	"main": "./dist/src/index.js",
 	"dependencies": {
+		"@burninggarden/enums": "0.0.2",
 		"@types/node": "10.9.4",
 		"tap": "^12.6.1",
 		"typescript": "3.2.1"
