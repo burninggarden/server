@@ -7,4 +7,5 @@
 
 set -e
 
-eslint . --ext .ts
+eslint src --ext .ts
+eslint test --ext .ts
