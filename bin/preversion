@@ -7,6 +7,5 @@
 
 set -e
 
-bin/compile-source-files --verify || bin/compile-source-files
-
-NODE_ENV=test tap dist/test/**/*.js --reporter spec --timeout 5
+npm run lint
+npm test
