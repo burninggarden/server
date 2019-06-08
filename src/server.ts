@@ -5,7 +5,8 @@ import Config         from '@burninggarden/config';
 import PromiseWrapper from '@burninggarden/promise-wrapper';
 import {
 	ServerType,
-	ServerStatus
+	ServerStatus,
+	TimeInterval
 } from '@burninggarden/enums';
 import NetworkMapper, {
 	NetworkMapping
@@ -21,6 +22,7 @@ abstract class Server {
 	private httpServerStatus  : ServerStatus = ServerStatus.NOT_STARTED;
 	private tcpServerStatus   : ServerStatus = ServerStatus.NOT_STARTED;
 	private httpsServerStatus : ServerStatus = ServerStatus.NOT_STARTED;
+	private saveTimer         : NodeJS.Timer | null = null;
 
 	public constructor() {
 		this.createNetworkMapping();
@@ -88,6 +90,10 @@ abstract class Server {
 		throw new Error('Must implement initHttpsServer() on child class');
 	}
 
+	protected handleTcpConnection(socket: Net.Socket): void {
+		throw new Error('Must implement handleTcpConnection() on child class');
+	}
+
 	private createNetworkMapping(): void {
 		const
 			mapper     = this.getNetworkMapper(),
@@ -152,6 +158,9 @@ abstract class Server {
 
 	private setHttpServerStatus(serverStatus: ServerStatus): this {
 		this.httpServerStatus = serverStatus;
+
+		this.queueSaveNetworkMapping();
+
 		return this;
 	}
 
@@ -169,9 +178,6 @@ abstract class Server {
 
 	private handleTcpServerCreated(): void {
 		this.setTcpServerStatus(ServerStatus.LISTENING);
-	}
-
-	private handleTcpConnection(socket: Net.Socket): void {
 	}
 
 	private shutdownTcpServer(): Promise<any> {
@@ -208,6 +214,9 @@ abstract class Server {
 
 	private setTcpServerStatus(serverStatus: ServerStatus): this {
 		this.tcpServerStatus = serverStatus;
+
+		this.queueSaveNetworkMapping();
+
 		return this;
 	}
 
@@ -245,6 +254,9 @@ abstract class Server {
 
 	private setHttpsServerStatus(serverStatus: ServerStatus): this {
 		this.httpsServerStatus = serverStatus;
+
+		this.queueSaveNetworkMapping();
+
 		return this;
 	}
 
@@ -258,6 +270,35 @@ abstract class Server {
 
 	private getNetworkMapping(): NetworkMapping {
 		return this.networkMapping;
+	}
+
+	private queueSaveNetworkMapping(): void {
+		clearTimeout(this.getSaveTimer());
+
+		const timer = setTimeout(
+			this.saveNetworkMapping.bind(this),
+			this.getSaveDelay()
+		);
+
+		timer.unref();
+
+		this.setSaveTimer(timer);
+	}
+
+	private getSaveTimer(): NodeJS.Timer | null {
+		return this.saveTimer;
+	}
+
+	private setSaveTimer(saveTimer: NodeJS.Timer): this {
+		this.saveTimer = saveTimer;
+		return this;
+	}
+
+	private getSaveDelay(): number {
+		return TimeInterval.ONE_SECOND * 5;
+	}
+
+	private saveNetworkMapping(): void {
 	}
 
 	protected abstract getServerType(): ServerType;

@@ -36,6 +36,12 @@ class MockTcpServer extends Server {
 		return true;
 	}
 
+	protected handleTcpConnection(socket: Net.Socket): void {
+		// Overriding this method with a noop to prevent
+		// the parent class's implementation from throwing
+		// when we try to access the server's TCP port.
+	}
+
 }
 
 Tap.test('server creates http binding if necessary', async test => {
