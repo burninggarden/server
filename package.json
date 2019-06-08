@@ -8,9 +8,11 @@
 	"repository": "https://github.com/burninggarden/server",
 	"main": "./dist/src/index.js",
 	"dependencies": {
-		"@burninggarden/enums": "0.0.2",
-		"@burninggarden/network-mapper": "0.0.5",
+		"@burninggarden/config": "0.0.8",
+		"@burninggarden/enums": "0.0.9",
+		"@burninggarden/network-mapper": "0.0.7",
 		"@burninggarden/port-allocator": "0.0.3",
+		"@burninggarden/port-checker": "0.0.2",
 		"@types/node": "10.9.4",
 		"tap": "^12.6.1",
 		"typescript": "3.2.1"
