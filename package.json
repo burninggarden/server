@@ -9,6 +9,8 @@
 	"main": "./dist/src/index.js",
 	"dependencies": {
 		"@burninggarden/enums": "0.0.2",
+		"@burninggarden/network-mapper": "0.0.5",
+		"@burninggarden/port-allocator": "0.0.3",
 		"@types/node": "10.9.4",
 		"tap": "^12.6.1",
 		"typescript": "3.2.1"
@@ -20,7 +22,7 @@
 	},
 	"scripts": {
 		"install": "./bin/install",
-		"test":    "./bin/test",
-		"lint":    "./bin/lint"
+		"test": "./bin/test",
+		"lint": "./bin/lint"
 	}
 }
