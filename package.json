@@ -9,7 +9,7 @@
 	"main": "./dist/src/index.js",
 	"dependencies": {
 		"@burninggarden/config": "0.0.8",
-		"@burninggarden/enums": "0.0.9",
+		"@burninggarden/enums": "0.0.11",
 		"@burninggarden/network-mapper": "0.0.7",
 		"@burninggarden/port-allocator": "0.0.3",
 		"@burninggarden/port-checker": "0.0.2",
