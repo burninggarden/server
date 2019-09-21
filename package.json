@@ -10,7 +10,7 @@
 	"dependencies": {
 		"@burninggarden/config": "0.0.8",
 		"@burninggarden/enums": "0.0.11",
-		"@burninggarden/network-mapper": "0.0.7",
+		"@burninggarden/network-mapper": "0.0.10",
 		"@burninggarden/port-allocator": "0.0.3",
 		"@burninggarden/port-checker": "0.0.2",
 		"@types/node": "10.9.4",
@@ -23,10 +23,10 @@
 		"eslint": "^5.15.3"
 	},
 	"scripts": {
-		"install":     "./bin/install",
-		"test":        "./bin/test",
-		"lint":        "./bin/lint",
-		"preversion":  "./bin/preversion",
+		"install": "./bin/install",
+		"test": "./bin/test",
+		"lint": "./bin/lint",
+		"preversion": "./bin/preversion",
 		"postversion": "./bin/postversion"
 	}
 }
